@@ -16,7 +16,11 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body className={inter.className}>{children}</body>
+            {/* 전체 레이아웃 설정 변경하기 */}
+            {/* <body className={inter.className}>{children}</body> */}
+            <body className={`${inter.className} max-w-screen-sm mx-auto`}>
+                {children}
+            </body>
         </html>
     );
 }
