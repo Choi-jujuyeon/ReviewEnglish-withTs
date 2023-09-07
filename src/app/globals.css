@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 버튼 컴포넌트 디자인 넣어주기 */
+
+@layer components {
+    .btn-style {
+        @apply p-3 rounded-full shadow-md shadow-gray-300;
+    }
+}
