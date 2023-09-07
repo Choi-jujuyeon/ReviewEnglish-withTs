@@ -9,7 +9,7 @@ import { useParams } from "next/navigation";
 
 import data from "@/data.json";
 
-// data 배열 안 객체에 대한 type 만들기 !
+// data 배열 안 객체에 대한 type만들기 !
 // export interface TReview{}
 export type TReview = {
     day: number;
@@ -22,9 +22,18 @@ export type TReview = {
 
 // 페이지 컴포넌트 == next-type인 NextPage로 타입 지정해주기
 const Day: NextPage = () => {
+    const [review, setReview] = useState<TReview>();
+
     // 주소창의 값을 가져온다
     // { } ~> 폴더명과 동일한 이름 사용학;
     const { id } = useParams();
+
+    // id가 변경될때마다 렌더링ㄱ
+    useEffect(() => {
+        if (typeof id !== "string") return;
+        //id=string type임으로 parseInt 사용해줘야한다
+        setReview(data[parseInt(id, 10) - 1]);
+    }, [id]);
 
     return (
         <main className="bg-slate-100 min-h-screen flex flex-col justify-start items-center py-24 px-12">
