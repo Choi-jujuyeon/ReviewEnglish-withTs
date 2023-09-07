@@ -1,11 +1,24 @@
 "use client";
-
 import ReviewCard from "@/components/ReviewCard";
 import { NextPage } from "next";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 //동적 라우팅으로 구현한 다른 day 1~를 title에도 설정해주자!
 import { useParams } from "next/navigation";
+
+import data from "@/data.json";
+
+// data 배열 안 객체에 대한 type 만들기 !
+// export interface TReview{}
+export type TReview = {
+    day: number;
+    title: string;
+    sentences: {
+        english: string;
+        korean: string;
+    }[];
+};
 
 // 페이지 컴포넌트 == next-type인 NextPage로 타입 지정해주기
 const Day: NextPage = () => {
