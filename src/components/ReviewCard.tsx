@@ -29,6 +29,26 @@ const ReviewCard: FC<ReviewCardProps> = ({
         }
     };
 
+    const onClickNext = () => {
+        if (currentReviewIndex >= sentences.length - 1) {
+            setCurrentReviewIndex(0);
+        } else {
+            setCurrentReviewIndex(currentReviewIndex + 1);
+        }
+        setLanguage("korean");
+    };
+
+    //
+    const onClickPreview = () => {
+        // 배열의 가장 마지막 요소라고 판단
+        if (currentReviewIndex <= 0) {
+            setCurrentReviewIndex(sentences.length - 1);
+        } else {
+            setCurrentReviewIndex(currentReviewIndex - 1);
+        }
+        setLanguage("korean");
+    };
+
     return (
         <div className=" w-full">
             <div className=" h-60">
@@ -42,7 +62,7 @@ const ReviewCard: FC<ReviewCardProps> = ({
                 </div>
             </div>
             <div className="mt-4 flex justify-between">
-                <button className="btn-style">
+                <button onClick={onClickPreview} className="btn-style">
                     <LeftArrow />
                 </button>
                 <button onClick={onClickLang} className="btn-style">
@@ -63,7 +83,7 @@ const ReviewCard: FC<ReviewCardProps> = ({
                         ENG
                     </span>
                 </button>
-                <button className="btn-style">
+                <button onClick={onClickNext} className="btn-style">
                     <RightArrow />
                 </button>
             </div>
