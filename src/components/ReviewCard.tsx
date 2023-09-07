@@ -20,6 +20,15 @@ const ReviewCard: FC<ReviewCardProps> = ({
 }) => {
     const [language, setLanguage] = useState<TLanguage>("korean");
 
+    // 언어 선택 토글 기능 구현하기
+    const onClickLang = () => {
+        if (language === "korean") {
+            setLanguage("english");
+        } else {
+            setLanguage("korean");
+        }
+    };
+
     return (
         <div className=" w-full">
             <div className=" h-60">
@@ -36,10 +45,23 @@ const ReviewCard: FC<ReviewCardProps> = ({
                 <button className="btn-style">
                     <LeftArrow />
                 </button>
-                <button className="btn-style">
+                <button onClick={onClickLang} className="btn-style">
                     {/* 줄바꿈이 안 일어날 경우에는 span태그 활용함 */}
-                    <span className="mr-1">KOR</span>/
-                    <span className="ml-1 font-semibold">ENG</span>
+                    <span
+                        className={`${
+                            language === "korean" && "font-semibold"
+                        } mr-1`}
+                    >
+                        KOR
+                    </span>
+                    /
+                    <span
+                        className={`${
+                            language === "english" && "font-semibold"
+                        } ml-1`}
+                    >
+                        ENG
+                    </span>
                 </button>
                 <button className="btn-style">
                     <RightArrow />
