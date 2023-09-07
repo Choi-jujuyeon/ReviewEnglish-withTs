@@ -1,16 +1,30 @@
+import { TReview } from "@/app/day/[id]/page";
 import LeftArrow from "@/app/icons/LeftArrow";
 import RightArrow from "@/app/icons/RightArrow";
 import Speaker from "@/app/icons/Speaker";
 
-import { FC } from "react";
+import { Dispatch, FC, SetStateAction, useState } from "react";
+
+type ReviewCardProps = Pick<TReview, "sentences"> & {
+    currentReviewIndex: number;
+    setCurrentReviewIndex: Dispatch<SetStateAction<number>>;
+};
+// 타입은 계속해서 좁혀 사용하는게 좋다
+type TLanguage = "korean" | "english";
 
 // 페이지는 아니기때문에 FC 타입 사용
-const ReviewCard: FC = () => {
+const ReviewCard: FC<ReviewCardProps> = ({
+    sentences,
+    currentReviewIndex,
+    setCurrentReviewIndex,
+}) => {
+    const [language, setLanguage] = useState<TLanguage>("korean");
+
     return (
-        <div className="bg-red-100 w-full">
-            <div className="bg-blue-100 h-60">
+        <div className=" w-full">
+            <div className=" h-60">
                 <div className="border-black border-2 px-4 py-2">
-                    Working from home isn't for me. I always get distracted
+                    {sentences[currentReviewIndex][language]}
                 </div>
                 <div className="mt-2">
                     <button className="btn-style">

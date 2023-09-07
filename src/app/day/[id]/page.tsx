@@ -28,6 +28,9 @@ const Day: NextPage = () => {
     // { } ~> 폴더명과 동일한 이름 사용학;
     const { id } = useParams();
 
+    // useState의 type을 제네릭 형태로 적어준다
+    const [currentReviewIndex, setCurrentReviewIndex] = useState<number>(0);
+
     // id가 변경될때마다 렌더링ㄱ
     useEffect(() => {
         if (typeof id !== "string") return;
@@ -48,8 +51,13 @@ const Day: NextPage = () => {
                 </Link>
                 <div className="font-semibold mb-24 mt-2">Day {id}</div>
             </div>
-
-            <ReviewCard />
+            {review && (
+                <ReviewCard
+                    sentences={review.sentences}
+                    currentReviewIndex={currentReviewIndex}
+                    setCurrentReviewIndex={setCurrentReviewIndex}
+                />
+            )}
         </main>
     );
 };
